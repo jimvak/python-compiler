@@ -1,0 +1,2341 @@
+Terminals unused in grammar
+
+   S
+   UNDERSCORE
+   EXIT
+   SEMICOLON
+   BRACKETS
+   BY
+   MYBY
+   NE
+   DICT
+
+
+Grammar
+
+    0 $accept: start $end
+
+    1 start: stmt NEWLINE
+    2      | stmt2 NEWLINE
+
+    3 stmt: assign_arithmetic
+    4     | assign_str
+    5     | display
+
+    6 stmt2: Comment
+    7      | klasi
+    8      | sinartisi
+    9      | objectCreation
+   10      | objectCalling
+   11      | Ifstatement
+   12      | lambdastm
+   13      | forStatement
+   14      | importStatement
+   15      | dictCreation
+
+   16 identifier: ID
+   17           | keyword
+
+   18 keyword: PRINT
+   19        | RARE
+   20        | CLASS
+   21        | DEF
+   22        | IF
+   23        | LAMBDA
+   24        | IN
+   25        | FOR
+   26        | RANGE
+   27        | IMPORT
+
+   28 assign_str: identifier EQ strings
+
+   29 display: PRINT strings
+   30        | PRINT strings MUL NUMBER
+   31        | PRINT strings PLUS strings
+   32        | PRINT expr
+
+   33 strings: STRING_LIT
+   34        | STRING_VAR
+   35        | SSS
+
+   36 assign_arithmetic: identifier EQ expr
+
+   37 expr: expr PLUS expr
+   38     | expr MINUS expr
+   39     | expr MUL expr
+   40     | expr DIVIDE expr
+   41     | factor
+   42     | LBRACKET expr RBRACKET
+   43     | SIGN factor
+
+   44 SIGN: PLUS
+   45     | MINUS
+
+   46 factor: identifier
+   47       | NUMBER
+   48       | FLOAT
+
+   49 Comment: HASHTAG expr
+   50        | HASHTAG
+
+   51 Ifstatement: IF identifier EQ EQ identifier COLON
+   52            | IF identifier LT identifier COLON
+   53            | IF identifier LE identifier COLON
+   54            | IF identifier GE identifier COLON
+   55            | IF identifier GT identifier COLON
+
+   56 lambdastm: LAMBDA factor COLON factor
+   57          | LAMBDA factor COLON factor PLUS factor
+   58          | LAMBDA factor COLON factor MINUS factor
+   59          | LAMBDA factor COLON factor MUL factor
+   60          | LAMBDA factor COLON factor DIVIDE factor
+   61          | LAMBDA factor COMMA factor COLON factor PLUS factor
+   62          | LAMBDA factor COMMA factor COLON factor MINUS factor
+   63          | LAMBDA factor COMMA factor COLON factor MUL factor
+   64          | LAMBDA factor COMMA factor COLON factor DIVIDE factor
+   65          | LBRACKET LAMBDA factor COLON factor PLUS factor RBRACKET
+
+   66 klasi: CLASS identifier COLON
+
+   67 sinartisi: DEF identifier SSS COLON
+
+   68 objectCreation: identifier EQ identifier SSS
+
+   69 objectCalling: identifier DOT identifier SSS
+
+   70 forStatement: FOR identifier IN STRING_LIT COLON
+   71             | FOR identifier IN identifier COLON
+   72             | FOR identifier IN RANGE SSS COLON
+
+   73 importStatement: IMPORT identifier
+   74                | IMPORT identifier AS identifier
+
+   75 dictCreation: identifier EQ LHOOK RHOOK
+   76             | identifier EQ LHOOK factor COLON factor RHOOK
+   77             | identifier EQ LHOOK factor COLON factor COMMA factor COLON factor RHOOK
+   78             | identifier EQ LHOOK factor COLON factor COMMA factor COLON factor COMMA factor COLON factor RHOOK
+   79             | identifier EQ LHOOK factor COLON factor COMMA factor COLON factor COMMA factor COLON factor COMMA factor COLON factor RHOOK
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+ID (258) 16
+NUMBER (259) 30 47
+STRING_LIT (260) 33 70
+STRING_VAR (261) 34
+SSS (262) 35 67 68 69 72
+S (263)
+HASHTAG (264) 49 50
+NEWLINE (265) 1 2
+COLON (266) 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 70 71
+    72 76 77 78 79
+UNDERSCORE (267)
+EXIT (268)
+EQ (269) 28 36 51 68 75 76 77 78 79
+PLUS (270) 31 37 44 57 61 65
+MINUS (271) 38 45 58 62
+MUL (272) 30 39 59 63
+DIVIDE (273) 40 60 64
+LBRACKET (274) 42 65
+RBRACKET (275) 42 65
+SEMICOLON (276)
+BRACKETS (277)
+BY (278)
+COMMA (279) 61 62 63 64 77 78 79
+MYBY (280)
+LHOOK (281) 75 76 77 78 79
+RHOOK (282) 75 76 77 78 79
+PRINT (283) 18 29 30 31 32
+RARE (284) 19
+CLASS (285) 20 66
+DEF (286) 21 67
+IN (287) 24 70 71 72
+FOR (288) 25 70 71 72
+RANGE (289) 26 72
+IMPORT (290) 27 73 74
+AS (291) 74
+FLOAT (292) 48
+DOT (293) 69
+IF (294) 22 51 52 53 54 55
+GE (295) 54
+GT (296) 55
+LE (297) 53
+LT (298) 52
+NE (299)
+LAMBDA (300) 23 56 57 58 59 60 61 62 63 64 65
+DICT (301)
+
+
+Nonterminals, with rules where they appear
+
+$accept (47)
+    on left: 0
+start (48)
+    on left: 1 2, on right: 0
+stmt (49)
+    on left: 3 4 5, on right: 1
+stmt2 (50)
+    on left: 6 7 8 9 10 11 12 13 14 15, on right: 2
+identifier (51)
+    on left: 16 17, on right: 28 36 46 51 52 53 54 55 66 67 68 69 70
+    71 72 73 74 75 76 77 78 79
+keyword (52)
+    on left: 18 19 20 21 22 23 24 25 26 27, on right: 17
+assign_str (53)
+    on left: 28, on right: 4
+display (54)
+    on left: 29 30 31 32, on right: 5
+strings (55)
+    on left: 33 34 35, on right: 28 29 30 31
+assign_arithmetic (56)
+    on left: 36, on right: 3
+expr (57)
+    on left: 37 38 39 40 41 42 43, on right: 32 36 37 38 39 40 42 49
+SIGN (58)
+    on left: 44 45, on right: 43
+factor (59)
+    on left: 46 47 48, on right: 41 43 56 57 58 59 60 61 62 63 64 65
+    76 77 78 79
+Comment (60)
+    on left: 49 50, on right: 6
+Ifstatement (61)
+    on left: 51 52 53 54 55, on right: 11
+lambdastm (62)
+    on left: 56 57 58 59 60 61 62 63 64 65, on right: 12
+klasi (63)
+    on left: 66, on right: 7
+sinartisi (64)
+    on left: 67, on right: 8
+objectCreation (65)
+    on left: 68, on right: 9
+objectCalling (66)
+    on left: 69, on right: 10
+forStatement (67)
+    on left: 70 71 72, on right: 13
+importStatement (68)
+    on left: 73 74, on right: 14
+dictCreation (69)
+    on left: 75 76 77 78 79, on right: 15
+
+
+state 0
+
+    0 $accept: . start $end
+
+    ID        shift, and go to state 1
+    HASHTAG   shift, and go to state 2
+    LBRACKET  shift, and go to state 3
+    PRINT     shift, and go to state 4
+    RARE      shift, and go to state 5
+    CLASS     shift, and go to state 6
+    DEF       shift, and go to state 7
+    IN        shift, and go to state 8
+    FOR       shift, and go to state 9
+    RANGE     shift, and go to state 10
+    IMPORT    shift, and go to state 11
+    IF        shift, and go to state 12
+    LAMBDA    shift, and go to state 13
+
+    start              go to state 14
+    stmt               go to state 15
+    stmt2              go to state 16
+    identifier         go to state 17
+    keyword            go to state 18
+    assign_str         go to state 19
+    display            go to state 20
+    assign_arithmetic  go to state 21
+    Comment            go to state 22
+    Ifstatement        go to state 23
+    lambdastm          go to state 24
+    klasi              go to state 25
+    sinartisi          go to state 26
+    objectCreation     go to state 27
+    objectCalling      go to state 28
+    forStatement       go to state 29
+    importStatement    go to state 30
+    dictCreation       go to state 31
+
+
+state 1
+
+   16 identifier: ID .
+
+    $default  reduce using rule 16 (identifier)
+
+
+state 2
+
+   49 Comment: HASHTAG . expr
+   50        | HASHTAG .
+
+    ID        shift, and go to state 1
+    NUMBER    shift, and go to state 32
+    PLUS      shift, and go to state 33
+    MINUS     shift, and go to state 34
+    LBRACKET  shift, and go to state 35
+    PRINT     shift, and go to state 36
+    RARE      shift, and go to state 5
+    CLASS     shift, and go to state 37
+    DEF       shift, and go to state 38
+    IN        shift, and go to state 8
+    FOR       shift, and go to state 39
+    RANGE     shift, and go to state 10
+    IMPORT    shift, and go to state 40
+    FLOAT     shift, and go to state 41
+    IF        shift, and go to state 42
+    LAMBDA    shift, and go to state 43
+
+    $default  reduce using rule 50 (Comment)
+
+    identifier  go to state 44
+    keyword     go to state 18
+    expr        go to state 45
+    SIGN        go to state 46
+    factor      go to state 47
+
+
+state 3
+
+   65 lambdastm: LBRACKET . LAMBDA factor COLON factor PLUS factor RBRACKET
+
+    LAMBDA  shift, and go to state 48
+
+
+state 4
+
+   18 keyword: PRINT .
+   29 display: PRINT . strings
+   30        | PRINT . strings MUL NUMBER
+   31        | PRINT . strings PLUS strings
+   32        | PRINT . expr
+
+    ID          shift, and go to state 1
+    NUMBER      shift, and go to state 32
+    STRING_LIT  shift, and go to state 49
+    STRING_VAR  shift, and go to state 50
+    SSS         shift, and go to state 51
+    PLUS        shift, and go to state 33
+    MINUS       shift, and go to state 34
+    LBRACKET    shift, and go to state 35
+    PRINT       shift, and go to state 36
+    RARE        shift, and go to state 5
+    CLASS       shift, and go to state 37
+    DEF         shift, and go to state 38
+    IN          shift, and go to state 8
+    FOR         shift, and go to state 39
+    RANGE       shift, and go to state 10
+    IMPORT      shift, and go to state 40
+    FLOAT       shift, and go to state 41
+    IF          shift, and go to state 42
+    LAMBDA      shift, and go to state 43
+
+    $default  reduce using rule 18 (keyword)
+
+    identifier  go to state 44
+    keyword     go to state 18
+    strings     go to state 52
+    expr        go to state 53
+    SIGN        go to state 46
+    factor      go to state 47
+
+
+state 5
+
+   19 keyword: RARE .
+
+    $default  reduce using rule 19 (keyword)
+
+
+state 6
+
+   20 keyword: CLASS .
+   66 klasi: CLASS . identifier COLON
+
+    ID      shift, and go to state 1
+    PRINT   shift, and go to state 36
+    RARE    shift, and go to state 5
+    CLASS   shift, and go to state 37
+    DEF     shift, and go to state 38
+    IN      shift, and go to state 8
+    FOR     shift, and go to state 39
+    RANGE   shift, and go to state 10
+    IMPORT  shift, and go to state 40
+    IF      shift, and go to state 42
+    LAMBDA  shift, and go to state 43
+
+    $default  reduce using rule 20 (keyword)
+
+    identifier  go to state 54
+    keyword     go to state 18
+
+
+state 7
+
+   21 keyword: DEF .
+   67 sinartisi: DEF . identifier SSS COLON
+
+    ID      shift, and go to state 1
+    PRINT   shift, and go to state 36
+    RARE    shift, and go to state 5
+    CLASS   shift, and go to state 37
+    DEF     shift, and go to state 38
+    IN      shift, and go to state 8
+    FOR     shift, and go to state 39
+    RANGE   shift, and go to state 10
+    IMPORT  shift, and go to state 40
+    IF      shift, and go to state 42
+    LAMBDA  shift, and go to state 43
+
+    $default  reduce using rule 21 (keyword)
+
+    identifier  go to state 55
+    keyword     go to state 18
+
+
+state 8
+
+   24 keyword: IN .
+
+    $default  reduce using rule 24 (keyword)
+
+
+state 9
+
+   25 keyword: FOR .
+   70 forStatement: FOR . identifier IN STRING_LIT COLON
+   71             | FOR . identifier IN identifier COLON
+   72             | FOR . identifier IN RANGE SSS COLON
+
+    ID      shift, and go to state 1
+    PRINT   shift, and go to state 36
+    RARE    shift, and go to state 5
+    CLASS   shift, and go to state 37
+    DEF     shift, and go to state 38
+    IN      shift, and go to state 8
+    FOR     shift, and go to state 39
+    RANGE   shift, and go to state 10
+    IMPORT  shift, and go to state 40
+    IF      shift, and go to state 42
+    LAMBDA  shift, and go to state 43
+
+    $default  reduce using rule 25 (keyword)
+
+    identifier  go to state 56
+    keyword     go to state 18
+
+
+state 10
+
+   26 keyword: RANGE .
+
+    $default  reduce using rule 26 (keyword)
+
+
+state 11
+
+   27 keyword: IMPORT .
+   73 importStatement: IMPORT . identifier
+   74                | IMPORT . identifier AS identifier
+
+    ID      shift, and go to state 1
+    PRINT   shift, and go to state 36
+    RARE    shift, and go to state 5
+    CLASS   shift, and go to state 37
+    DEF     shift, and go to state 38
+    IN      shift, and go to state 8
+    FOR     shift, and go to state 39
+    RANGE   shift, and go to state 10
+    IMPORT  shift, and go to state 40
+    IF      shift, and go to state 42
+    LAMBDA  shift, and go to state 43
+
+    $default  reduce using rule 27 (keyword)
+
+    identifier  go to state 57
+    keyword     go to state 18
+
+
+state 12
+
+   22 keyword: IF .
+   51 Ifstatement: IF . identifier EQ EQ identifier COLON
+   52            | IF . identifier LT identifier COLON
+   53            | IF . identifier LE identifier COLON
+   54            | IF . identifier GE identifier COLON
+   55            | IF . identifier GT identifier COLON
+
+    ID      shift, and go to state 1
+    PRINT   shift, and go to state 36
+    RARE    shift, and go to state 5
+    CLASS   shift, and go to state 37
+    DEF     shift, and go to state 38
+    IN      shift, and go to state 8
+    FOR     shift, and go to state 39
+    RANGE   shift, and go to state 10
+    IMPORT  shift, and go to state 40
+    IF      shift, and go to state 42
+    LAMBDA  shift, and go to state 43
+
+    $default  reduce using rule 22 (keyword)
+
+    identifier  go to state 58
+    keyword     go to state 18
+
+
+state 13
+
+   23 keyword: LAMBDA .
+   56 lambdastm: LAMBDA . factor COLON factor
+   57          | LAMBDA . factor COLON factor PLUS factor
+   58          | LAMBDA . factor COLON factor MINUS factor
+   59          | LAMBDA . factor COLON factor MUL factor
+   60          | LAMBDA . factor COLON factor DIVIDE factor
+   61          | LAMBDA . factor COMMA factor COLON factor PLUS factor
+   62          | LAMBDA . factor COMMA factor COLON factor MINUS factor
+   63          | LAMBDA . factor COMMA factor COLON factor MUL factor
+   64          | LAMBDA . factor COMMA factor COLON factor DIVIDE factor
+
+    ID      shift, and go to state 1
+    NUMBER  shift, and go to state 32
+    PRINT   shift, and go to state 36
+    RARE    shift, and go to state 5
+    CLASS   shift, and go to state 37
+    DEF     shift, and go to state 38
+    IN      shift, and go to state 8
+    FOR     shift, and go to state 39
+    RANGE   shift, and go to state 10
+    IMPORT  shift, and go to state 40
+    FLOAT   shift, and go to state 41
+    IF      shift, and go to state 42
+    LAMBDA  shift, and go to state 43
+
+    $default  reduce using rule 23 (keyword)
+
+    identifier  go to state 44
+    keyword     go to state 18
+    factor      go to state 59
+
+
+state 14
+
+    0 $accept: start . $end
+
+    $end  shift, and go to state 60
+
+
+state 15
+
+    1 start: stmt . NEWLINE
+
+    NEWLINE  shift, and go to state 61
+
+
+state 16
+
+    2 start: stmt2 . NEWLINE
+
+    NEWLINE  shift, and go to state 62
+
+
+state 17
+
+   28 assign_str: identifier . EQ strings
+   36 assign_arithmetic: identifier . EQ expr
+   68 objectCreation: identifier . EQ identifier SSS
+   69 objectCalling: identifier . DOT identifier SSS
+   75 dictCreation: identifier . EQ LHOOK RHOOK
+   76             | identifier . EQ LHOOK factor COLON factor RHOOK
+   77             | identifier . EQ LHOOK factor COLON factor COMMA factor COLON factor RHOOK
+   78             | identifier . EQ LHOOK factor COLON factor COMMA factor COLON factor COMMA factor COLON factor RHOOK
+   79             | identifier . EQ LHOOK factor COLON factor COMMA factor COLON factor COMMA factor COLON factor COMMA factor COLON factor RHOOK
+
+    EQ   shift, and go to state 63
+    DOT  shift, and go to state 64
+
+
+state 18
+
+   17 identifier: keyword .
+
+    $default  reduce using rule 17 (identifier)
+
+
+state 19
+
+    4 stmt: assign_str .
+
+    $default  reduce using rule 4 (stmt)
+
+
+state 20
+
+    5 stmt: display .
+
+    $default  reduce using rule 5 (stmt)
+
+
+state 21
+
+    3 stmt: assign_arithmetic .
+
+    $default  reduce using rule 3 (stmt)
+
+
+state 22
+
+    6 stmt2: Comment .
+
+    $default  reduce using rule 6 (stmt2)
+
+
+state 23
+
+   11 stmt2: Ifstatement .
+
+    $default  reduce using rule 11 (stmt2)
+
+
+state 24
+
+   12 stmt2: lambdastm .
+
+    $default  reduce using rule 12 (stmt2)
+
+
+state 25
+
+    7 stmt2: klasi .
+
+    $default  reduce using rule 7 (stmt2)
+
+
+state 26
+
+    8 stmt2: sinartisi .
+
+    $default  reduce using rule 8 (stmt2)
+
+
+state 27
+
+    9 stmt2: objectCreation .
+
+    $default  reduce using rule 9 (stmt2)
+
+
+state 28
+
+   10 stmt2: objectCalling .
+
+    $default  reduce using rule 10 (stmt2)
+
+
+state 29
+
+   13 stmt2: forStatement .
+
+    $default  reduce using rule 13 (stmt2)
+
+
+state 30
+
+   14 stmt2: importStatement .
+
+    $default  reduce using rule 14 (stmt2)
+
+
+state 31
+
+   15 stmt2: dictCreation .
+
+    $default  reduce using rule 15 (stmt2)
+
+
+state 32
+
+   47 factor: NUMBER .
+
+    $default  reduce using rule 47 (factor)
+
+
+state 33
+
+   44 SIGN: PLUS .
+
+    $default  reduce using rule 44 (SIGN)
+
+
+state 34
+
+   45 SIGN: MINUS .
+
+    $default  reduce using rule 45 (SIGN)
+
+
+state 35
+
+   42 expr: LBRACKET . expr RBRACKET
+
+    ID        shift, and go to state 1
+    NUMBER    shift, and go to state 32
+    PLUS      shift, and go to state 33
+    MINUS     shift, and go to state 34
+    LBRACKET  shift, and go to state 35
+    PRINT     shift, and go to state 36
+    RARE      shift, and go to state 5
+    CLASS     shift, and go to state 37
+    DEF       shift, and go to state 38
+    IN        shift, and go to state 8
+    FOR       shift, and go to state 39
+    RANGE     shift, and go to state 10
+    IMPORT    shift, and go to state 40
+    FLOAT     shift, and go to state 41
+    IF        shift, and go to state 42
+    LAMBDA    shift, and go to state 43
+
+    identifier  go to state 44
+    keyword     go to state 18
+    expr        go to state 65
+    SIGN        go to state 46
+    factor      go to state 47
+
+
+state 36
+
+   18 keyword: PRINT .
+
+    $default  reduce using rule 18 (keyword)
+
+
+state 37
+
+   20 keyword: CLASS .
+
+    $default  reduce using rule 20 (keyword)
+
+
+state 38
+
+   21 keyword: DEF .
+
+    $default  reduce using rule 21 (keyword)
+
+
+state 39
+
+   25 keyword: FOR .
+
+    $default  reduce using rule 25 (keyword)
+
+
+state 40
+
+   27 keyword: IMPORT .
+
+    $default  reduce using rule 27 (keyword)
+
+
+state 41
+
+   48 factor: FLOAT .
+
+    $default  reduce using rule 48 (factor)
+
+
+state 42
+
+   22 keyword: IF .
+
+    $default  reduce using rule 22 (keyword)
+
+
+state 43
+
+   23 keyword: LAMBDA .
+
+    $default  reduce using rule 23 (keyword)
+
+
+state 44
+
+   46 factor: identifier .
+
+    $default  reduce using rule 46 (factor)
+
+
+state 45
+
+   37 expr: expr . PLUS expr
+   38     | expr . MINUS expr
+   39     | expr . MUL expr
+   40     | expr . DIVIDE expr
+   49 Comment: HASHTAG expr .
+
+    PLUS    shift, and go to state 66
+    MINUS   shift, and go to state 67
+    MUL     shift, and go to state 68
+    DIVIDE  shift, and go to state 69
+
+    $default  reduce using rule 49 (Comment)
+
+
+state 46
+
+   43 expr: SIGN . factor
+
+    ID      shift, and go to state 1
+    NUMBER  shift, and go to state 32
+    PRINT   shift, and go to state 36
+    RARE    shift, and go to state 5
+    CLASS   shift, and go to state 37
+    DEF     shift, and go to state 38
+    IN      shift, and go to state 8
+    FOR     shift, and go to state 39
+    RANGE   shift, and go to state 10
+    IMPORT  shift, and go to state 40
+    FLOAT   shift, and go to state 41
+    IF      shift, and go to state 42
+    LAMBDA  shift, and go to state 43
+
+    identifier  go to state 44
+    keyword     go to state 18
+    factor      go to state 70
+
+
+state 47
+
+   41 expr: factor .
+
+    $default  reduce using rule 41 (expr)
+
+
+state 48
+
+   65 lambdastm: LBRACKET LAMBDA . factor COLON factor PLUS factor RBRACKET
+
+    ID      shift, and go to state 1
+    NUMBER  shift, and go to state 32
+    PRINT   shift, and go to state 36
+    RARE    shift, and go to state 5
+    CLASS   shift, and go to state 37
+    DEF     shift, and go to state 38
+    IN      shift, and go to state 8
+    FOR     shift, and go to state 39
+    RANGE   shift, and go to state 10
+    IMPORT  shift, and go to state 40
+    FLOAT   shift, and go to state 41
+    IF      shift, and go to state 42
+    LAMBDA  shift, and go to state 43
+
+    identifier  go to state 44
+    keyword     go to state 18
+    factor      go to state 71
+
+
+state 49
+
+   33 strings: STRING_LIT .
+
+    $default  reduce using rule 33 (strings)
+
+
+state 50
+
+   34 strings: STRING_VAR .
+
+    $default  reduce using rule 34 (strings)
+
+
+state 51
+
+   35 strings: SSS .
+
+    $default  reduce using rule 35 (strings)
+
+
+state 52
+
+   29 display: PRINT strings .
+   30        | PRINT strings . MUL NUMBER
+   31        | PRINT strings . PLUS strings
+
+    PLUS  shift, and go to state 72
+    MUL   shift, and go to state 73
+
+    $default  reduce using rule 29 (display)
+
+
+state 53
+
+   32 display: PRINT expr .
+   37 expr: expr . PLUS expr
+   38     | expr . MINUS expr
+   39     | expr . MUL expr
+   40     | expr . DIVIDE expr
+
+    PLUS    shift, and go to state 66
+    MINUS   shift, and go to state 67
+    MUL     shift, and go to state 68
+    DIVIDE  shift, and go to state 69
+
+    $default  reduce using rule 32 (display)
+
+
+state 54
+
+   66 klasi: CLASS identifier . COLON
+
+    COLON  shift, and go to state 74
+
+
+state 55
+
+   67 sinartisi: DEF identifier . SSS COLON
+
+    SSS  shift, and go to state 75
+
+
+state 56
+
+   70 forStatement: FOR identifier . IN STRING_LIT COLON
+   71             | FOR identifier . IN identifier COLON
+   72             | FOR identifier . IN RANGE SSS COLON
+
+    IN  shift, and go to state 76
+
+
+state 57
+
+   73 importStatement: IMPORT identifier .
+   74                | IMPORT identifier . AS identifier
+
+    AS  shift, and go to state 77
+
+    $default  reduce using rule 73 (importStatement)
+
+
+state 58
+
+   51 Ifstatement: IF identifier . EQ EQ identifier COLON
+   52            | IF identifier . LT identifier COLON
+   53            | IF identifier . LE identifier COLON
+   54            | IF identifier . GE identifier COLON
+   55            | IF identifier . GT identifier COLON
+
+    EQ  shift, and go to state 78
+    GE  shift, and go to state 79
+    GT  shift, and go to state 80
+    LE  shift, and go to state 81
+    LT  shift, and go to state 82
+
+
+state 59
+
+   56 lambdastm: LAMBDA factor . COLON factor
+   57          | LAMBDA factor . COLON factor PLUS factor
+   58          | LAMBDA factor . COLON factor MINUS factor
+   59          | LAMBDA factor . COLON factor MUL factor
+   60          | LAMBDA factor . COLON factor DIVIDE factor
+   61          | LAMBDA factor . COMMA factor COLON factor PLUS factor
+   62          | LAMBDA factor . COMMA factor COLON factor MINUS factor
+   63          | LAMBDA factor . COMMA factor COLON factor MUL factor
+   64          | LAMBDA factor . COMMA factor COLON factor DIVIDE factor
+
+    COLON  shift, and go to state 83
+    COMMA  shift, and go to state 84
+
+
+state 60
+
+    0 $accept: start $end .
+
+    $default  accept
+
+
+state 61
+
+    1 start: stmt NEWLINE .
+
+    $default  reduce using rule 1 (start)
+
+
+state 62
+
+    2 start: stmt2 NEWLINE .
+
+    $default  reduce using rule 2 (start)
+
+
+state 63
+
+   28 assign_str: identifier EQ . strings
+   36 assign_arithmetic: identifier EQ . expr
+   68 objectCreation: identifier EQ . identifier SSS
+   75 dictCreation: identifier EQ . LHOOK RHOOK
+   76             | identifier EQ . LHOOK factor COLON factor RHOOK
+   77             | identifier EQ . LHOOK factor COLON factor COMMA factor COLON factor RHOOK
+   78             | identifier EQ . LHOOK factor COLON factor COMMA factor COLON factor COMMA factor COLON factor RHOOK
+   79             | identifier EQ . LHOOK factor COLON factor COMMA factor COLON factor COMMA factor COLON factor COMMA factor COLON factor RHOOK
+
+    ID          shift, and go to state 1
+    NUMBER      shift, and go to state 32
+    STRING_LIT  shift, and go to state 49
+    STRING_VAR  shift, and go to state 50
+    SSS         shift, and go to state 51
+    PLUS        shift, and go to state 33
+    MINUS       shift, and go to state 34
+    LBRACKET    shift, and go to state 35
+    LHOOK       shift, and go to state 85
+    PRINT       shift, and go to state 36
+    RARE        shift, and go to state 5
+    CLASS       shift, and go to state 37
+    DEF         shift, and go to state 38
+    IN          shift, and go to state 8
+    FOR         shift, and go to state 39
+    RANGE       shift, and go to state 10
+    IMPORT      shift, and go to state 40
+    FLOAT       shift, and go to state 41
+    IF          shift, and go to state 42
+    LAMBDA      shift, and go to state 43
+
+    identifier  go to state 86
+    keyword     go to state 18
+    strings     go to state 87
+    expr        go to state 88
+    SIGN        go to state 46
+    factor      go to state 47
+
+
+state 64
+
+   69 objectCalling: identifier DOT . identifier SSS
+
+    ID      shift, and go to state 1
+    PRINT   shift, and go to state 36
+    RARE    shift, and go to state 5
+    CLASS   shift, and go to state 37
+    DEF     shift, and go to state 38
+    IN      shift, and go to state 8
+    FOR     shift, and go to state 39
+    RANGE   shift, and go to state 10
+    IMPORT  shift, and go to state 40
+    IF      shift, and go to state 42
+    LAMBDA  shift, and go to state 43
+
+    identifier  go to state 89
+    keyword     go to state 18
+
+
+state 65
+
+   37 expr: expr . PLUS expr
+   38     | expr . MINUS expr
+   39     | expr . MUL expr
+   40     | expr . DIVIDE expr
+   42     | LBRACKET expr . RBRACKET
+
+    PLUS      shift, and go to state 66
+    MINUS     shift, and go to state 67
+    MUL       shift, and go to state 68
+    DIVIDE    shift, and go to state 69
+    RBRACKET  shift, and go to state 90
+
+
+state 66
+
+   37 expr: expr PLUS . expr
+
+    ID        shift, and go to state 1
+    NUMBER    shift, and go to state 32
+    PLUS      shift, and go to state 33
+    MINUS     shift, and go to state 34
+    LBRACKET  shift, and go to state 35
+    PRINT     shift, and go to state 36
+    RARE      shift, and go to state 5
+    CLASS     shift, and go to state 37
+    DEF       shift, and go to state 38
+    IN        shift, and go to state 8
+    FOR       shift, and go to state 39
+    RANGE     shift, and go to state 10
+    IMPORT    shift, and go to state 40
+    FLOAT     shift, and go to state 41
+    IF        shift, and go to state 42
+    LAMBDA    shift, and go to state 43
+
+    identifier  go to state 44
+    keyword     go to state 18
+    expr        go to state 91
+    SIGN        go to state 46
+    factor      go to state 47
+
+
+state 67
+
+   38 expr: expr MINUS . expr
+
+    ID        shift, and go to state 1
+    NUMBER    shift, and go to state 32
+    PLUS      shift, and go to state 33
+    MINUS     shift, and go to state 34
+    LBRACKET  shift, and go to state 35
+    PRINT     shift, and go to state 36
+    RARE      shift, and go to state 5
+    CLASS     shift, and go to state 37
+    DEF       shift, and go to state 38
+    IN        shift, and go to state 8
+    FOR       shift, and go to state 39
+    RANGE     shift, and go to state 10
+    IMPORT    shift, and go to state 40
+    FLOAT     shift, and go to state 41
+    IF        shift, and go to state 42
+    LAMBDA    shift, and go to state 43
+
+    identifier  go to state 44
+    keyword     go to state 18
+    expr        go to state 92
+    SIGN        go to state 46
+    factor      go to state 47
+
+
+state 68
+
+   39 expr: expr MUL . expr
+
+    ID        shift, and go to state 1
+    NUMBER    shift, and go to state 32
+    PLUS      shift, and go to state 33
+    MINUS     shift, and go to state 34
+    LBRACKET  shift, and go to state 35
+    PRINT     shift, and go to state 36
+    RARE      shift, and go to state 5
+    CLASS     shift, and go to state 37
+    DEF       shift, and go to state 38
+    IN        shift, and go to state 8
+    FOR       shift, and go to state 39
+    RANGE     shift, and go to state 10
+    IMPORT    shift, and go to state 40
+    FLOAT     shift, and go to state 41
+    IF        shift, and go to state 42
+    LAMBDA    shift, and go to state 43
+
+    identifier  go to state 44
+    keyword     go to state 18
+    expr        go to state 93
+    SIGN        go to state 46
+    factor      go to state 47
+
+
+state 69
+
+   40 expr: expr DIVIDE . expr
+
+    ID        shift, and go to state 1
+    NUMBER    shift, and go to state 32
+    PLUS      shift, and go to state 33
+    MINUS     shift, and go to state 34
+    LBRACKET  shift, and go to state 35
+    PRINT     shift, and go to state 36
+    RARE      shift, and go to state 5
+    CLASS     shift, and go to state 37
+    DEF       shift, and go to state 38
+    IN        shift, and go to state 8
+    FOR       shift, and go to state 39
+    RANGE     shift, and go to state 10
+    IMPORT    shift, and go to state 40
+    FLOAT     shift, and go to state 41
+    IF        shift, and go to state 42
+    LAMBDA    shift, and go to state 43
+
+    identifier  go to state 44
+    keyword     go to state 18
+    expr        go to state 94
+    SIGN        go to state 46
+    factor      go to state 47
+
+
+state 70
+
+   43 expr: SIGN factor .
+
+    $default  reduce using rule 43 (expr)
+
+
+state 71
+
+   65 lambdastm: LBRACKET LAMBDA factor . COLON factor PLUS factor RBRACKET
+
+    COLON  shift, and go to state 95
+
+
+state 72
+
+   31 display: PRINT strings PLUS . strings
+
+    STRING_LIT  shift, and go to state 49
+    STRING_VAR  shift, and go to state 50
+    SSS         shift, and go to state 51
+
+    strings  go to state 96
+
+
+state 73
+
+   30 display: PRINT strings MUL . NUMBER
+
+    NUMBER  shift, and go to state 97
+
+
+state 74
+
+   66 klasi: CLASS identifier COLON .
+
+    $default  reduce using rule 66 (klasi)
+
+
+state 75
+
+   67 sinartisi: DEF identifier SSS . COLON
+
+    COLON  shift, and go to state 98
+
+
+state 76
+
+   70 forStatement: FOR identifier IN . STRING_LIT COLON
+   71             | FOR identifier IN . identifier COLON
+   72             | FOR identifier IN . RANGE SSS COLON
+
+    ID          shift, and go to state 1
+    STRING_LIT  shift, and go to state 99
+    PRINT       shift, and go to state 36
+    RARE        shift, and go to state 5
+    CLASS       shift, and go to state 37
+    DEF         shift, and go to state 38
+    IN          shift, and go to state 8
+    FOR         shift, and go to state 39
+    RANGE       shift, and go to state 100
+    IMPORT      shift, and go to state 40
+    IF          shift, and go to state 42
+    LAMBDA      shift, and go to state 43
+
+    identifier  go to state 101
+    keyword     go to state 18
+
+
+state 77
+
+   74 importStatement: IMPORT identifier AS . identifier
+
+    ID      shift, and go to state 1
+    PRINT   shift, and go to state 36
+    RARE    shift, and go to state 5
+    CLASS   shift, and go to state 37
+    DEF     shift, and go to state 38
+    IN      shift, and go to state 8
+    FOR     shift, and go to state 39
+    RANGE   shift, and go to state 10
+    IMPORT  shift, and go to state 40
+    IF      shift, and go to state 42
+    LAMBDA  shift, and go to state 43
+
+    identifier  go to state 102
+    keyword     go to state 18
+
+
+state 78
+
+   51 Ifstatement: IF identifier EQ . EQ identifier COLON
+
+    EQ  shift, and go to state 103
+
+
+state 79
+
+   54 Ifstatement: IF identifier GE . identifier COLON
+
+    ID      shift, and go to state 1
+    PRINT   shift, and go to state 36
+    RARE    shift, and go to state 5
+    CLASS   shift, and go to state 37
+    DEF     shift, and go to state 38
+    IN      shift, and go to state 8
+    FOR     shift, and go to state 39
+    RANGE   shift, and go to state 10
+    IMPORT  shift, and go to state 40
+    IF      shift, and go to state 42
+    LAMBDA  shift, and go to state 43
+
+    identifier  go to state 104
+    keyword     go to state 18
+
+
+state 80
+
+   55 Ifstatement: IF identifier GT . identifier COLON
+
+    ID      shift, and go to state 1
+    PRINT   shift, and go to state 36
+    RARE    shift, and go to state 5
+    CLASS   shift, and go to state 37
+    DEF     shift, and go to state 38
+    IN      shift, and go to state 8
+    FOR     shift, and go to state 39
+    RANGE   shift, and go to state 10
+    IMPORT  shift, and go to state 40
+    IF      shift, and go to state 42
+    LAMBDA  shift, and go to state 43
+
+    identifier  go to state 105
+    keyword     go to state 18
+
+
+state 81
+
+   53 Ifstatement: IF identifier LE . identifier COLON
+
+    ID      shift, and go to state 1
+    PRINT   shift, and go to state 36
+    RARE    shift, and go to state 5
+    CLASS   shift, and go to state 37
+    DEF     shift, and go to state 38
+    IN      shift, and go to state 8
+    FOR     shift, and go to state 39
+    RANGE   shift, and go to state 10
+    IMPORT  shift, and go to state 40
+    IF      shift, and go to state 42
+    LAMBDA  shift, and go to state 43
+
+    identifier  go to state 106
+    keyword     go to state 18
+
+
+state 82
+
+   52 Ifstatement: IF identifier LT . identifier COLON
+
+    ID      shift, and go to state 1
+    PRINT   shift, and go to state 36
+    RARE    shift, and go to state 5
+    CLASS   shift, and go to state 37
+    DEF     shift, and go to state 38
+    IN      shift, and go to state 8
+    FOR     shift, and go to state 39
+    RANGE   shift, and go to state 10
+    IMPORT  shift, and go to state 40
+    IF      shift, and go to state 42
+    LAMBDA  shift, and go to state 43
+
+    identifier  go to state 107
+    keyword     go to state 18
+
+
+state 83
+
+   56 lambdastm: LAMBDA factor COLON . factor
+   57          | LAMBDA factor COLON . factor PLUS factor
+   58          | LAMBDA factor COLON . factor MINUS factor
+   59          | LAMBDA factor COLON . factor MUL factor
+   60          | LAMBDA factor COLON . factor DIVIDE factor
+
+    ID      shift, and go to state 1
+    NUMBER  shift, and go to state 32
+    PRINT   shift, and go to state 36
+    RARE    shift, and go to state 5
+    CLASS   shift, and go to state 37
+    DEF     shift, and go to state 38
+    IN      shift, and go to state 8
+    FOR     shift, and go to state 39
+    RANGE   shift, and go to state 10
+    IMPORT  shift, and go to state 40
+    FLOAT   shift, and go to state 41
+    IF      shift, and go to state 42
+    LAMBDA  shift, and go to state 43
+
+    identifier  go to state 44
+    keyword     go to state 18
+    factor      go to state 108
+
+
+state 84
+
+   61 lambdastm: LAMBDA factor COMMA . factor COLON factor PLUS factor
+   62          | LAMBDA factor COMMA . factor COLON factor MINUS factor
+   63          | LAMBDA factor COMMA . factor COLON factor MUL factor
+   64          | LAMBDA factor COMMA . factor COLON factor DIVIDE factor
+
+    ID      shift, and go to state 1
+    NUMBER  shift, and go to state 32
+    PRINT   shift, and go to state 36
+    RARE    shift, and go to state 5
+    CLASS   shift, and go to state 37
+    DEF     shift, and go to state 38
+    IN      shift, and go to state 8
+    FOR     shift, and go to state 39
+    RANGE   shift, and go to state 10
+    IMPORT  shift, and go to state 40
+    FLOAT   shift, and go to state 41
+    IF      shift, and go to state 42
+    LAMBDA  shift, and go to state 43
+
+    identifier  go to state 44
+    keyword     go to state 18
+    factor      go to state 109
+
+
+state 85
+
+   75 dictCreation: identifier EQ LHOOK . RHOOK
+   76             | identifier EQ LHOOK . factor COLON factor RHOOK
+   77             | identifier EQ LHOOK . factor COLON factor COMMA factor COLON factor RHOOK
+   78             | identifier EQ LHOOK . factor COLON factor COMMA factor COLON factor COMMA factor COLON factor RHOOK
+   79             | identifier EQ LHOOK . factor COLON factor COMMA factor COLON factor COMMA factor COLON factor COMMA factor COLON factor RHOOK
+
+    ID      shift, and go to state 1
+    NUMBER  shift, and go to state 32
+    RHOOK   shift, and go to state 110
+    PRINT   shift, and go to state 36
+    RARE    shift, and go to state 5
+    CLASS   shift, and go to state 37
+    DEF     shift, and go to state 38
+    IN      shift, and go to state 8
+    FOR     shift, and go to state 39
+    RANGE   shift, and go to state 10
+    IMPORT  shift, and go to state 40
+    FLOAT   shift, and go to state 41
+    IF      shift, and go to state 42
+    LAMBDA  shift, and go to state 43
+
+    identifier  go to state 44
+    keyword     go to state 18
+    factor      go to state 111
+
+
+state 86
+
+   46 factor: identifier .
+   68 objectCreation: identifier EQ identifier . SSS
+
+    SSS  shift, and go to state 112
+
+    $default  reduce using rule 46 (factor)
+
+
+state 87
+
+   28 assign_str: identifier EQ strings .
+
+    $default  reduce using rule 28 (assign_str)
+
+
+state 88
+
+   36 assign_arithmetic: identifier EQ expr .
+   37 expr: expr . PLUS expr
+   38     | expr . MINUS expr
+   39     | expr . MUL expr
+   40     | expr . DIVIDE expr
+
+    PLUS    shift, and go to state 66
+    MINUS   shift, and go to state 67
+    MUL     shift, and go to state 68
+    DIVIDE  shift, and go to state 69
+
+    $default  reduce using rule 36 (assign_arithmetic)
+
+
+state 89
+
+   69 objectCalling: identifier DOT identifier . SSS
+
+    SSS  shift, and go to state 113
+
+
+state 90
+
+   42 expr: LBRACKET expr RBRACKET .
+
+    $default  reduce using rule 42 (expr)
+
+
+state 91
+
+   37 expr: expr . PLUS expr
+   37     | expr PLUS expr .
+   38     | expr . MINUS expr
+   39     | expr . MUL expr
+   40     | expr . DIVIDE expr
+
+    MUL     shift, and go to state 68
+    DIVIDE  shift, and go to state 69
+
+    $default  reduce using rule 37 (expr)
+
+
+state 92
+
+   37 expr: expr . PLUS expr
+   38     | expr . MINUS expr
+   38     | expr MINUS expr .
+   39     | expr . MUL expr
+   40     | expr . DIVIDE expr
+
+    MUL     shift, and go to state 68
+    DIVIDE  shift, and go to state 69
+
+    $default  reduce using rule 38 (expr)
+
+
+state 93
+
+   37 expr: expr . PLUS expr
+   38     | expr . MINUS expr
+   39     | expr . MUL expr
+   39     | expr MUL expr .
+   40     | expr . DIVIDE expr
+
+    $default  reduce using rule 39 (expr)
+
+
+state 94
+
+   37 expr: expr . PLUS expr
+   38     | expr . MINUS expr
+   39     | expr . MUL expr
+   40     | expr . DIVIDE expr
+   40     | expr DIVIDE expr .
+
+    $default  reduce using rule 40 (expr)
+
+
+state 95
+
+   65 lambdastm: LBRACKET LAMBDA factor COLON . factor PLUS factor RBRACKET
+
+    ID      shift, and go to state 1
+    NUMBER  shift, and go to state 32
+    PRINT   shift, and go to state 36
+    RARE    shift, and go to state 5
+    CLASS   shift, and go to state 37
+    DEF     shift, and go to state 38
+    IN      shift, and go to state 8
+    FOR     shift, and go to state 39
+    RANGE   shift, and go to state 10
+    IMPORT  shift, and go to state 40
+    FLOAT   shift, and go to state 41
+    IF      shift, and go to state 42
+    LAMBDA  shift, and go to state 43
+
+    identifier  go to state 44
+    keyword     go to state 18
+    factor      go to state 114
+
+
+state 96
+
+   31 display: PRINT strings PLUS strings .
+
+    $default  reduce using rule 31 (display)
+
+
+state 97
+
+   30 display: PRINT strings MUL NUMBER .
+
+    $default  reduce using rule 30 (display)
+
+
+state 98
+
+   67 sinartisi: DEF identifier SSS COLON .
+
+    $default  reduce using rule 67 (sinartisi)
+
+
+state 99
+
+   70 forStatement: FOR identifier IN STRING_LIT . COLON
+
+    COLON  shift, and go to state 115
+
+
+state 100
+
+   26 keyword: RANGE .
+   72 forStatement: FOR identifier IN RANGE . SSS COLON
+
+    SSS  shift, and go to state 116
+
+    $default  reduce using rule 26 (keyword)
+
+
+state 101
+
+   71 forStatement: FOR identifier IN identifier . COLON
+
+    COLON  shift, and go to state 117
+
+
+state 102
+
+   74 importStatement: IMPORT identifier AS identifier .
+
+    $default  reduce using rule 74 (importStatement)
+
+
+state 103
+
+   51 Ifstatement: IF identifier EQ EQ . identifier COLON
+
+    ID      shift, and go to state 1
+    PRINT   shift, and go to state 36
+    RARE    shift, and go to state 5
+    CLASS   shift, and go to state 37
+    DEF     shift, and go to state 38
+    IN      shift, and go to state 8
+    FOR     shift, and go to state 39
+    RANGE   shift, and go to state 10
+    IMPORT  shift, and go to state 40
+    IF      shift, and go to state 42
+    LAMBDA  shift, and go to state 43
+
+    identifier  go to state 118
+    keyword     go to state 18
+
+
+state 104
+
+   54 Ifstatement: IF identifier GE identifier . COLON
+
+    COLON  shift, and go to state 119
+
+
+state 105
+
+   55 Ifstatement: IF identifier GT identifier . COLON
+
+    COLON  shift, and go to state 120
+
+
+state 106
+
+   53 Ifstatement: IF identifier LE identifier . COLON
+
+    COLON  shift, and go to state 121
+
+
+state 107
+
+   52 Ifstatement: IF identifier LT identifier . COLON
+
+    COLON  shift, and go to state 122
+
+
+state 108
+
+   56 lambdastm: LAMBDA factor COLON factor .
+   57          | LAMBDA factor COLON factor . PLUS factor
+   58          | LAMBDA factor COLON factor . MINUS factor
+   59          | LAMBDA factor COLON factor . MUL factor
+   60          | LAMBDA factor COLON factor . DIVIDE factor
+
+    PLUS    shift, and go to state 123
+    MINUS   shift, and go to state 124
+    MUL     shift, and go to state 125
+    DIVIDE  shift, and go to state 126
+
+    $default  reduce using rule 56 (lambdastm)
+
+
+state 109
+
+   61 lambdastm: LAMBDA factor COMMA factor . COLON factor PLUS factor
+   62          | LAMBDA factor COMMA factor . COLON factor MINUS factor
+   63          | LAMBDA factor COMMA factor . COLON factor MUL factor
+   64          | LAMBDA factor COMMA factor . COLON factor DIVIDE factor
+
+    COLON  shift, and go to state 127
+
+
+state 110
+
+   75 dictCreation: identifier EQ LHOOK RHOOK .
+
+    $default  reduce using rule 75 (dictCreation)
+
+
+state 111
+
+   76 dictCreation: identifier EQ LHOOK factor . COLON factor RHOOK
+   77             | identifier EQ LHOOK factor . COLON factor COMMA factor COLON factor RHOOK
+   78             | identifier EQ LHOOK factor . COLON factor COMMA factor COLON factor COMMA factor COLON factor RHOOK
+   79             | identifier EQ LHOOK factor . COLON factor COMMA factor COLON factor COMMA factor COLON factor COMMA factor COLON factor RHOOK
+
+    COLON  shift, and go to state 128
+
+
+state 112
+
+   68 objectCreation: identifier EQ identifier SSS .
+
+    $default  reduce using rule 68 (objectCreation)
+
+
+state 113
+
+   69 objectCalling: identifier DOT identifier SSS .
+
+    $default  reduce using rule 69 (objectCalling)
+
+
+state 114
+
+   65 lambdastm: LBRACKET LAMBDA factor COLON factor . PLUS factor RBRACKET
+
+    PLUS  shift, and go to state 129
+
+
+state 115
+
+   70 forStatement: FOR identifier IN STRING_LIT COLON .
+
+    $default  reduce using rule 70 (forStatement)
+
+
+state 116
+
+   72 forStatement: FOR identifier IN RANGE SSS . COLON
+
+    COLON  shift, and go to state 130
+
+
+state 117
+
+   71 forStatement: FOR identifier IN identifier COLON .
+
+    $default  reduce using rule 71 (forStatement)
+
+
+state 118
+
+   51 Ifstatement: IF identifier EQ EQ identifier . COLON
+
+    COLON  shift, and go to state 131
+
+
+state 119
+
+   54 Ifstatement: IF identifier GE identifier COLON .
+
+    $default  reduce using rule 54 (Ifstatement)
+
+
+state 120
+
+   55 Ifstatement: IF identifier GT identifier COLON .
+
+    $default  reduce using rule 55 (Ifstatement)
+
+
+state 121
+
+   53 Ifstatement: IF identifier LE identifier COLON .
+
+    $default  reduce using rule 53 (Ifstatement)
+
+
+state 122
+
+   52 Ifstatement: IF identifier LT identifier COLON .
+
+    $default  reduce using rule 52 (Ifstatement)
+
+
+state 123
+
+   57 lambdastm: LAMBDA factor COLON factor PLUS . factor
+
+    ID      shift, and go to state 1
+    NUMBER  shift, and go to state 32
+    PRINT   shift, and go to state 36
+    RARE    shift, and go to state 5
+    CLASS   shift, and go to state 37
+    DEF     shift, and go to state 38
+    IN      shift, and go to state 8
+    FOR     shift, and go to state 39
+    RANGE   shift, and go to state 10
+    IMPORT  shift, and go to state 40
+    FLOAT   shift, and go to state 41
+    IF      shift, and go to state 42
+    LAMBDA  shift, and go to state 43
+
+    identifier  go to state 44
+    keyword     go to state 18
+    factor      go to state 132
+
+
+state 124
+
+   58 lambdastm: LAMBDA factor COLON factor MINUS . factor
+
+    ID      shift, and go to state 1
+    NUMBER  shift, and go to state 32
+    PRINT   shift, and go to state 36
+    RARE    shift, and go to state 5
+    CLASS   shift, and go to state 37
+    DEF     shift, and go to state 38
+    IN      shift, and go to state 8
+    FOR     shift, and go to state 39
+    RANGE   shift, and go to state 10
+    IMPORT  shift, and go to state 40
+    FLOAT   shift, and go to state 41
+    IF      shift, and go to state 42
+    LAMBDA  shift, and go to state 43
+
+    identifier  go to state 44
+    keyword     go to state 18
+    factor      go to state 133
+
+
+state 125
+
+   59 lambdastm: LAMBDA factor COLON factor MUL . factor
+
+    ID      shift, and go to state 1
+    NUMBER  shift, and go to state 32
+    PRINT   shift, and go to state 36
+    RARE    shift, and go to state 5
+    CLASS   shift, and go to state 37
+    DEF     shift, and go to state 38
+    IN      shift, and go to state 8
+    FOR     shift, and go to state 39
+    RANGE   shift, and go to state 10
+    IMPORT  shift, and go to state 40
+    FLOAT   shift, and go to state 41
+    IF      shift, and go to state 42
+    LAMBDA  shift, and go to state 43
+
+    identifier  go to state 44
+    keyword     go to state 18
+    factor      go to state 134
+
+
+state 126
+
+   60 lambdastm: LAMBDA factor COLON factor DIVIDE . factor
+
+    ID      shift, and go to state 1
+    NUMBER  shift, and go to state 32
+    PRINT   shift, and go to state 36
+    RARE    shift, and go to state 5
+    CLASS   shift, and go to state 37
+    DEF     shift, and go to state 38
+    IN      shift, and go to state 8
+    FOR     shift, and go to state 39
+    RANGE   shift, and go to state 10
+    IMPORT  shift, and go to state 40
+    FLOAT   shift, and go to state 41
+    IF      shift, and go to state 42
+    LAMBDA  shift, and go to state 43
+
+    identifier  go to state 44
+    keyword     go to state 18
+    factor      go to state 135
+
+
+state 127
+
+   61 lambdastm: LAMBDA factor COMMA factor COLON . factor PLUS factor
+   62          | LAMBDA factor COMMA factor COLON . factor MINUS factor
+   63          | LAMBDA factor COMMA factor COLON . factor MUL factor
+   64          | LAMBDA factor COMMA factor COLON . factor DIVIDE factor
+
+    ID      shift, and go to state 1
+    NUMBER  shift, and go to state 32
+    PRINT   shift, and go to state 36
+    RARE    shift, and go to state 5
+    CLASS   shift, and go to state 37
+    DEF     shift, and go to state 38
+    IN      shift, and go to state 8
+    FOR     shift, and go to state 39
+    RANGE   shift, and go to state 10
+    IMPORT  shift, and go to state 40
+    FLOAT   shift, and go to state 41
+    IF      shift, and go to state 42
+    LAMBDA  shift, and go to state 43
+
+    identifier  go to state 44
+    keyword     go to state 18
+    factor      go to state 136
+
+
+state 128
+
+   76 dictCreation: identifier EQ LHOOK factor COLON . factor RHOOK
+   77             | identifier EQ LHOOK factor COLON . factor COMMA factor COLON factor RHOOK
+   78             | identifier EQ LHOOK factor COLON . factor COMMA factor COLON factor COMMA factor COLON factor RHOOK
+   79             | identifier EQ LHOOK factor COLON . factor COMMA factor COLON factor COMMA factor COLON factor COMMA factor COLON factor RHOOK
+
+    ID      shift, and go to state 1
+    NUMBER  shift, and go to state 32
+    PRINT   shift, and go to state 36
+    RARE    shift, and go to state 5
+    CLASS   shift, and go to state 37
+    DEF     shift, and go to state 38
+    IN      shift, and go to state 8
+    FOR     shift, and go to state 39
+    RANGE   shift, and go to state 10
+    IMPORT  shift, and go to state 40
+    FLOAT   shift, and go to state 41
+    IF      shift, and go to state 42
+    LAMBDA  shift, and go to state 43
+
+    identifier  go to state 44
+    keyword     go to state 18
+    factor      go to state 137
+
+
+state 129
+
+   65 lambdastm: LBRACKET LAMBDA factor COLON factor PLUS . factor RBRACKET
+
+    ID      shift, and go to state 1
+    NUMBER  shift, and go to state 32
+    PRINT   shift, and go to state 36
+    RARE    shift, and go to state 5
+    CLASS   shift, and go to state 37
+    DEF     shift, and go to state 38
+    IN      shift, and go to state 8
+    FOR     shift, and go to state 39
+    RANGE   shift, and go to state 10
+    IMPORT  shift, and go to state 40
+    FLOAT   shift, and go to state 41
+    IF      shift, and go to state 42
+    LAMBDA  shift, and go to state 43
+
+    identifier  go to state 44
+    keyword     go to state 18
+    factor      go to state 138
+
+
+state 130
+
+   72 forStatement: FOR identifier IN RANGE SSS COLON .
+
+    $default  reduce using rule 72 (forStatement)
+
+
+state 131
+
+   51 Ifstatement: IF identifier EQ EQ identifier COLON .
+
+    $default  reduce using rule 51 (Ifstatement)
+
+
+state 132
+
+   57 lambdastm: LAMBDA factor COLON factor PLUS factor .
+
+    $default  reduce using rule 57 (lambdastm)
+
+
+state 133
+
+   58 lambdastm: LAMBDA factor COLON factor MINUS factor .
+
+    $default  reduce using rule 58 (lambdastm)
+
+
+state 134
+
+   59 lambdastm: LAMBDA factor COLON factor MUL factor .
+
+    $default  reduce using rule 59 (lambdastm)
+
+
+state 135
+
+   60 lambdastm: LAMBDA factor COLON factor DIVIDE factor .
+
+    $default  reduce using rule 60 (lambdastm)
+
+
+state 136
+
+   61 lambdastm: LAMBDA factor COMMA factor COLON factor . PLUS factor
+   62          | LAMBDA factor COMMA factor COLON factor . MINUS factor
+   63          | LAMBDA factor COMMA factor COLON factor . MUL factor
+   64          | LAMBDA factor COMMA factor COLON factor . DIVIDE factor
+
+    PLUS    shift, and go to state 139
+    MINUS   shift, and go to state 140
+    MUL     shift, and go to state 141
+    DIVIDE  shift, and go to state 142
+
+
+state 137
+
+   76 dictCreation: identifier EQ LHOOK factor COLON factor . RHOOK
+   77             | identifier EQ LHOOK factor COLON factor . COMMA factor COLON factor RHOOK
+   78             | identifier EQ LHOOK factor COLON factor . COMMA factor COLON factor COMMA factor COLON factor RHOOK
+   79             | identifier EQ LHOOK factor COLON factor . COMMA factor COLON factor COMMA factor COLON factor COMMA factor COLON factor RHOOK
+
+    COMMA  shift, and go to state 143
+    RHOOK  shift, and go to state 144
+
+
+state 138
+
+   65 lambdastm: LBRACKET LAMBDA factor COLON factor PLUS factor . RBRACKET
+
+    RBRACKET  shift, and go to state 145
+
+
+state 139
+
+   61 lambdastm: LAMBDA factor COMMA factor COLON factor PLUS . factor
+
+    ID      shift, and go to state 1
+    NUMBER  shift, and go to state 32
+    PRINT   shift, and go to state 36
+    RARE    shift, and go to state 5
+    CLASS   shift, and go to state 37
+    DEF     shift, and go to state 38
+    IN      shift, and go to state 8
+    FOR     shift, and go to state 39
+    RANGE   shift, and go to state 10
+    IMPORT  shift, and go to state 40
+    FLOAT   shift, and go to state 41
+    IF      shift, and go to state 42
+    LAMBDA  shift, and go to state 43
+
+    identifier  go to state 44
+    keyword     go to state 18
+    factor      go to state 146
+
+
+state 140
+
+   62 lambdastm: LAMBDA factor COMMA factor COLON factor MINUS . factor
+
+    ID      shift, and go to state 1
+    NUMBER  shift, and go to state 32
+    PRINT   shift, and go to state 36
+    RARE    shift, and go to state 5
+    CLASS   shift, and go to state 37
+    DEF     shift, and go to state 38
+    IN      shift, and go to state 8
+    FOR     shift, and go to state 39
+    RANGE   shift, and go to state 10
+    IMPORT  shift, and go to state 40
+    FLOAT   shift, and go to state 41
+    IF      shift, and go to state 42
+    LAMBDA  shift, and go to state 43
+
+    identifier  go to state 44
+    keyword     go to state 18
+    factor      go to state 147
+
+
+state 141
+
+   63 lambdastm: LAMBDA factor COMMA factor COLON factor MUL . factor
+
+    ID      shift, and go to state 1
+    NUMBER  shift, and go to state 32
+    PRINT   shift, and go to state 36
+    RARE    shift, and go to state 5
+    CLASS   shift, and go to state 37
+    DEF     shift, and go to state 38
+    IN      shift, and go to state 8
+    FOR     shift, and go to state 39
+    RANGE   shift, and go to state 10
+    IMPORT  shift, and go to state 40
+    FLOAT   shift, and go to state 41
+    IF      shift, and go to state 42
+    LAMBDA  shift, and go to state 43
+
+    identifier  go to state 44
+    keyword     go to state 18
+    factor      go to state 148
+
+
+state 142
+
+   64 lambdastm: LAMBDA factor COMMA factor COLON factor DIVIDE . factor
+
+    ID      shift, and go to state 1
+    NUMBER  shift, and go to state 32
+    PRINT   shift, and go to state 36
+    RARE    shift, and go to state 5
+    CLASS   shift, and go to state 37
+    DEF     shift, and go to state 38
+    IN      shift, and go to state 8
+    FOR     shift, and go to state 39
+    RANGE   shift, and go to state 10
+    IMPORT  shift, and go to state 40
+    FLOAT   shift, and go to state 41
+    IF      shift, and go to state 42
+    LAMBDA  shift, and go to state 43
+
+    identifier  go to state 44
+    keyword     go to state 18
+    factor      go to state 149
+
+
+state 143
+
+   77 dictCreation: identifier EQ LHOOK factor COLON factor COMMA . factor COLON factor RHOOK
+   78             | identifier EQ LHOOK factor COLON factor COMMA . factor COLON factor COMMA factor COLON factor RHOOK
+   79             | identifier EQ LHOOK factor COLON factor COMMA . factor COLON factor COMMA factor COLON factor COMMA factor COLON factor RHOOK
+
+    ID      shift, and go to state 1
+    NUMBER  shift, and go to state 32
+    PRINT   shift, and go to state 36
+    RARE    shift, and go to state 5
+    CLASS   shift, and go to state 37
+    DEF     shift, and go to state 38
+    IN      shift, and go to state 8
+    FOR     shift, and go to state 39
+    RANGE   shift, and go to state 10
+    IMPORT  shift, and go to state 40
+    FLOAT   shift, and go to state 41
+    IF      shift, and go to state 42
+    LAMBDA  shift, and go to state 43
+
+    identifier  go to state 44
+    keyword     go to state 18
+    factor      go to state 150
+
+
+state 144
+
+   76 dictCreation: identifier EQ LHOOK factor COLON factor RHOOK .
+
+    $default  reduce using rule 76 (dictCreation)
+
+
+state 145
+
+   65 lambdastm: LBRACKET LAMBDA factor COLON factor PLUS factor RBRACKET .
+
+    $default  reduce using rule 65 (lambdastm)
+
+
+state 146
+
+   61 lambdastm: LAMBDA factor COMMA factor COLON factor PLUS factor .
+
+    $default  reduce using rule 61 (lambdastm)
+
+
+state 147
+
+   62 lambdastm: LAMBDA factor COMMA factor COLON factor MINUS factor .
+
+    $default  reduce using rule 62 (lambdastm)
+
+
+state 148
+
+   63 lambdastm: LAMBDA factor COMMA factor COLON factor MUL factor .
+
+    $default  reduce using rule 63 (lambdastm)
+
+
+state 149
+
+   64 lambdastm: LAMBDA factor COMMA factor COLON factor DIVIDE factor .
+
+    $default  reduce using rule 64 (lambdastm)
+
+
+state 150
+
+   77 dictCreation: identifier EQ LHOOK factor COLON factor COMMA factor . COLON factor RHOOK
+   78             | identifier EQ LHOOK factor COLON factor COMMA factor . COLON factor COMMA factor COLON factor RHOOK
+   79             | identifier EQ LHOOK factor COLON factor COMMA factor . COLON factor COMMA factor COLON factor COMMA factor COLON factor RHOOK
+
+    COLON  shift, and go to state 151
+
+
+state 151
+
+   77 dictCreation: identifier EQ LHOOK factor COLON factor COMMA factor COLON . factor RHOOK
+   78             | identifier EQ LHOOK factor COLON factor COMMA factor COLON . factor COMMA factor COLON factor RHOOK
+   79             | identifier EQ LHOOK factor COLON factor COMMA factor COLON . factor COMMA factor COLON factor COMMA factor COLON factor RHOOK
+
+    ID      shift, and go to state 1
+    NUMBER  shift, and go to state 32
+    PRINT   shift, and go to state 36
+    RARE    shift, and go to state 5
+    CLASS   shift, and go to state 37
+    DEF     shift, and go to state 38
+    IN      shift, and go to state 8
+    FOR     shift, and go to state 39
+    RANGE   shift, and go to state 10
+    IMPORT  shift, and go to state 40
+    FLOAT   shift, and go to state 41
+    IF      shift, and go to state 42
+    LAMBDA  shift, and go to state 43
+
+    identifier  go to state 44
+    keyword     go to state 18
+    factor      go to state 152
+
+
+state 152
+
+   77 dictCreation: identifier EQ LHOOK factor COLON factor COMMA factor COLON factor . RHOOK
+   78             | identifier EQ LHOOK factor COLON factor COMMA factor COLON factor . COMMA factor COLON factor RHOOK
+   79             | identifier EQ LHOOK factor COLON factor COMMA factor COLON factor . COMMA factor COLON factor COMMA factor COLON factor RHOOK
+
+    COMMA  shift, and go to state 153
+    RHOOK  shift, and go to state 154
+
+
+state 153
+
+   78 dictCreation: identifier EQ LHOOK factor COLON factor COMMA factor COLON factor COMMA . factor COLON factor RHOOK
+   79             | identifier EQ LHOOK factor COLON factor COMMA factor COLON factor COMMA . factor COLON factor COMMA factor COLON factor RHOOK
+
+    ID      shift, and go to state 1
+    NUMBER  shift, and go to state 32
+    PRINT   shift, and go to state 36
+    RARE    shift, and go to state 5
+    CLASS   shift, and go to state 37
+    DEF     shift, and go to state 38
+    IN      shift, and go to state 8
+    FOR     shift, and go to state 39
+    RANGE   shift, and go to state 10
+    IMPORT  shift, and go to state 40
+    FLOAT   shift, and go to state 41
+    IF      shift, and go to state 42
+    LAMBDA  shift, and go to state 43
+
+    identifier  go to state 44
+    keyword     go to state 18
+    factor      go to state 155
+
+
+state 154
+
+   77 dictCreation: identifier EQ LHOOK factor COLON factor COMMA factor COLON factor RHOOK .
+
+    $default  reduce using rule 77 (dictCreation)
+
+
+state 155
+
+   78 dictCreation: identifier EQ LHOOK factor COLON factor COMMA factor COLON factor COMMA factor . COLON factor RHOOK
+   79             | identifier EQ LHOOK factor COLON factor COMMA factor COLON factor COMMA factor . COLON factor COMMA factor COLON factor RHOOK
+
+    COLON  shift, and go to state 156
+
+
+state 156
+
+   78 dictCreation: identifier EQ LHOOK factor COLON factor COMMA factor COLON factor COMMA factor COLON . factor RHOOK
+   79             | identifier EQ LHOOK factor COLON factor COMMA factor COLON factor COMMA factor COLON . factor COMMA factor COLON factor RHOOK
+
+    ID      shift, and go to state 1
+    NUMBER  shift, and go to state 32
+    PRINT   shift, and go to state 36
+    RARE    shift, and go to state 5
+    CLASS   shift, and go to state 37
+    DEF     shift, and go to state 38
+    IN      shift, and go to state 8
+    FOR     shift, and go to state 39
+    RANGE   shift, and go to state 10
+    IMPORT  shift, and go to state 40
+    FLOAT   shift, and go to state 41
+    IF      shift, and go to state 42
+    LAMBDA  shift, and go to state 43
+
+    identifier  go to state 44
+    keyword     go to state 18
+    factor      go to state 157
+
+
+state 157
+
+   78 dictCreation: identifier EQ LHOOK factor COLON factor COMMA factor COLON factor COMMA factor COLON factor . RHOOK
+   79             | identifier EQ LHOOK factor COLON factor COMMA factor COLON factor COMMA factor COLON factor . COMMA factor COLON factor RHOOK
+
+    COMMA  shift, and go to state 158
+    RHOOK  shift, and go to state 159
+
+
+state 158
+
+   79 dictCreation: identifier EQ LHOOK factor COLON factor COMMA factor COLON factor COMMA factor COLON factor COMMA . factor COLON factor RHOOK
+
+    ID      shift, and go to state 1
+    NUMBER  shift, and go to state 32
+    PRINT   shift, and go to state 36
+    RARE    shift, and go to state 5
+    CLASS   shift, and go to state 37
+    DEF     shift, and go to state 38
+    IN      shift, and go to state 8
+    FOR     shift, and go to state 39
+    RANGE   shift, and go to state 10
+    IMPORT  shift, and go to state 40
+    FLOAT   shift, and go to state 41
+    IF      shift, and go to state 42
+    LAMBDA  shift, and go to state 43
+
+    identifier  go to state 44
+    keyword     go to state 18
+    factor      go to state 160
+
+
+state 159
+
+   78 dictCreation: identifier EQ LHOOK factor COLON factor COMMA factor COLON factor COMMA factor COLON factor RHOOK .
+
+    $default  reduce using rule 78 (dictCreation)
+
+
+state 160
+
+   79 dictCreation: identifier EQ LHOOK factor COLON factor COMMA factor COLON factor COMMA factor COLON factor COMMA factor . COLON factor RHOOK
+
+    COLON  shift, and go to state 161
+
+
+state 161
+
+   79 dictCreation: identifier EQ LHOOK factor COLON factor COMMA factor COLON factor COMMA factor COLON factor COMMA factor COLON . factor RHOOK
+
+    ID      shift, and go to state 1
+    NUMBER  shift, and go to state 32
+    PRINT   shift, and go to state 36
+    RARE    shift, and go to state 5
+    CLASS   shift, and go to state 37
+    DEF     shift, and go to state 38
+    IN      shift, and go to state 8
+    FOR     shift, and go to state 39
+    RANGE   shift, and go to state 10
+    IMPORT  shift, and go to state 40
+    FLOAT   shift, and go to state 41
+    IF      shift, and go to state 42
+    LAMBDA  shift, and go to state 43
+
+    identifier  go to state 44
+    keyword     go to state 18
+    factor      go to state 162
+
+
+state 162
+
+   79 dictCreation: identifier EQ LHOOK factor COLON factor COMMA factor COLON factor COMMA factor COLON factor COMMA factor COLON factor . RHOOK
+
+    RHOOK  shift, and go to state 163
+
+
+state 163
+
+   79 dictCreation: identifier EQ LHOOK factor COLON factor COMMA factor COLON factor COMMA factor COLON factor COMMA factor COLON factor RHOOK .
+
+    $default  reduce using rule 79 (dictCreation)
